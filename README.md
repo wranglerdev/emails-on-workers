@@ -55,12 +55,13 @@ const res = await fetch('https://your-worker.workers.dev/v1/email', {
 
 ### MVP
 
-- [ ] Full Zod type safety
+- [ok] Full Zod type safety
+- [ok] Error handling
 - [ ] Product images
 - [ ] Attachments
-- [ ] Error handling
 - [ ] Database + ORM
 - [ ] Auth
+- [ ] Dashboard
 - [ ] Deploy via one-click button on Cloudflare
 - [ ] Queues
 - [ ] Custom emails using JSX renderer ([jsx.email](https://jsx.email/docs/quick-start))
