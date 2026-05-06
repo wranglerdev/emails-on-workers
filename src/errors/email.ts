@@ -1,0 +1,23 @@
+const emailErrorMap: Record<string, { status: number; message: string }> = {
+  E_VALIDATION_ERROR:            { status: 400, message: 'Invalid payload — check email format and required fields' },
+  E_FIELD_MISSING:               { status: 400, message: 'A required field is missing (to, from, or subject)' },
+  E_TOO_MANY_RECIPIENTS:         { status: 400, message: 'Combined recipients across to, cc, and bcc cannot exceed 50' },
+  E_SENDER_NOT_VERIFIED:         { status: 400, message: 'Sender domain is not verified — verify it in the Cloudflare Email dashboard' },
+  E_SENDER_DOMAIN_NOT_AVAILABLE: { status: 400, message: 'Sender domain is not onboarded to Cloudflare Email Service' },
+  E_RECIPIENT_NOT_ALLOWED:       { status: 403, message: 'Recipient is not in the allowed destination addresses list' },
+  E_RECIPIENT_SUPPRESSED:        { status: 422, message: 'Recipient is suppressed due to a prior bounce or spam complaint' },
+  E_CONTENT_TOO_LARGE:           { status: 413, message: 'Email content exceeds the maximum allowed size' },
+  E_HEADERS_TOO_LARGE:           { status: 413, message: 'Total custom headers exceed the 16 KB limit' },
+  E_RATE_LIMIT_EXCEEDED:         { status: 429, message: 'Sending rate limit exceeded — please try again later' },
+  E_DAILY_LIMIT_EXCEEDED:        { status: 429, message: 'Daily sending quota reached — try again tomorrow' },
+  E_DELIVERY_FAILED:             { status: 502, message: 'Delivery failed — the recipient server rejected the message' },
+  E_INTERNAL_SERVER_ERROR:       { status: 500, message: 'Email Service temporarily unavailable' },
+  E_HEADER_NOT_ALLOWED:          { status: 400, message: 'One or more headers are platform-controlled or not on the allowlist' },
+  E_HEADER_USE_API_FIELD:        { status: 400, message: 'Use the dedicated API field instead of setting this as a header (e.g. use "from", not a From header)' },
+  E_HEADER_VALUE_INVALID:        { status: 400, message: 'A header value is malformed, empty, or in an incorrect format' },
+  E_HEADER_VALUE_TOO_LONG:       { status: 400, message: 'A header value exceeds the 2,048 byte limit' },
+  E_HEADER_NAME_INVALID:         { status: 400, message: 'A header name contains invalid characters or exceeds 100 bytes' },
+  E_HEADERS_TOO_MANY:            { status: 400, message: 'Too many custom headers — maximum 20 non-X-prefixed headers allowed' },
+}
+
+export { emailErrorMap }
