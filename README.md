@@ -12,25 +12,25 @@ An open source transactional email API built on Cloudflare Workers. Send emails 
 Install dependencies:
 
 ```bash
-npm install
+pnpm install
 ```
 
 Run locally:
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Deploy to Cloudflare:
 
 ```bash
-npm run deploy
+pnpm deploy
 ```
 
 Regenerate types after changing `wrangler.jsonc`:
 
 ```bash
-npm run cf-typegen
+pnpm cf-typegen
 ```
 
 ## API
