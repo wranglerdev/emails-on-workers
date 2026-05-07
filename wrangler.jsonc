@@ -23,8 +23,8 @@
   },
   "assets": {
     // directory is set automatically by @cloudflare/vite-plugin during build
-    "binding": "ASSETS",
+    // run_worker_first only for API routes — everything else goes directly to the client environment
     "not_found_handling": "single-page-application",
-    "run_worker_first": ["/*", "!/assets/*"]
+    "run_worker_first": ["/v1/*", "/api/*"]
   }
 }
