@@ -80,12 +80,12 @@ const res = await fetch('https://your-worker.workers.dev/v1/email', {
 - [ok] Deploy via one-click button on Cloudflare
 - [ ] Queues
 - [ ] Custom emails using JSX renderer ([jsx.email](https://jsx.email/docs/quick-start))
-- [ ] Simple docs using Astro
+- [ ] Simple docs/how to page
 
 ### V2
 
 - [ ] Optimizations on top of the email service
-
+- [ ] UI polishing
 Needs refine:
 
 - [ ] Campaigns: Send newsletters and product updates to large audiences
