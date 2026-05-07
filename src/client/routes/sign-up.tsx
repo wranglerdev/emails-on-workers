@@ -3,8 +3,8 @@ import { createFileRoute, redirect, Link, useNavigate } from '@tanstack/react-ro
 import { useQueryClient } from '@tanstack/react-query'
 import { useForm } from '@tanstack/react-form'
 import { z } from 'zod'
-import type { AnyFieldApi } from '@tanstack/react-form'
 import { authClient } from '../lib/auth-client'
+import { FieldErrors } from '../components/field-errors'
 
 export const Route = createFileRoute('/sign-up')({
   beforeLoad: ({ context }) => {
@@ -21,20 +21,6 @@ const signUpSchema = z.object({
   email: z.string().email('Invalid email address'),
   password: z.string().min(8, 'Password must be at least 8 characters'),
 })
-
-function FieldErrors({ field }: { field: AnyFieldApi }) {
-  if (!field.state.meta.errors.length) return null
-  return (
-    <div className="label">
-      <span className="label-text-alt text-error">
-        {field.state.meta.errors
-          .map((e) => (typeof e === 'string' ? e : (e as { message: string })?.message))
-          .filter(Boolean)
-          .join(', ')}
-      </span>
-    </div>
-  )
-}
 
 function SignUp() {
   const navigate = useNavigate()
@@ -194,7 +180,7 @@ function SignUp() {
 
           <p className="text-center text-sm text-base-content/60">
             Already have an account?{' '}
-            <Link to="/sign-in" className="link link-primary font-medium">
+            <Link to="/sign-in" className="font-medium underline underline-offset-2">
               Sign in
             </Link>
           </p>
