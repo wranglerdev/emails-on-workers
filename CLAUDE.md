@@ -4,7 +4,7 @@
 
 Cloudflare Emails is a transactional email API built on Cloudflare Workers using Hono, Zod, and the Cloudflare Email Sending binding. It exposes a REST API for sending emails without a third-party provider.
 
-Stack: **Hono** (routing + JSX renderer) · **Zod** (request validation) · **Vite** + `@cloudflare/vite-plugin` (build) · **Wrangler** (deploy/types) · **TypeScript** (strict mode)
+Stack: **Hono** (routing + JSX renderer + factory) · **Zod** (request validation) · **Vite** + `@cloudflare/vite-plugin` (build) · **Wrangler** (deploy/types) · **TypeScript** (strict mode)
 
 ---
 
@@ -13,6 +13,7 @@ Stack: **Hono** (routing + JSX renderer) · **Zod** (request validation) · **Vi
 ```
 src/
   index.tsx          # App entry — mounts middleware and routes
+  factory.ts         # Hono factory with CloudflareBindings — use for all apps/middleware
   renderer.tsx       # Hono JSX renderer (HTML shell)
   style.css          # Global styles
   routers/           # One file per resource — only routing + handler glue
@@ -54,7 +55,7 @@ worker-configuration.d.ts  # Auto-generated — do not edit manually
 - **Strict TypeScript** — `strict: true` is on; never disable it or use `@ts-ignore` without a comment explaining why.
 - **No comments on obvious code** — only comment non-obvious invariants or Cloudflare-specific workarounds.
 - **Do not edit `worker-configuration.d.ts` by hand** — regenerate with `pnpm run cf-typegen` after changing `wrangler.jsonc`.
-- **Hono generics** — always pass `{ Bindings: CloudflareBindings }` to `new Hono()` so binding types are inferred correctly.
+- **Factory pattern** — never use `new Hono<{ Bindings: CloudflareBindings }>()` directly. Always use `factory.createApp()` from `src/factory.ts`. This centralizes the `Env` type so routers and middleware get binding inference for free.
 
 ---
 
@@ -62,7 +63,7 @@ worker-configuration.d.ts  # Auto-generated — do not edit manually
 
 1. Create `src/schemas/<resource>.ts` — define and export Zod schemas.
 2. Create `src/errors/<resource>.ts` — define and export the error map if the route calls a binding.
-3. Create `src/routers/<resource>.ts` — define a `new Hono<{ Bindings: CloudflareBindings }>()` instance, import schemas and error map, implement handlers.
+3. Create `src/routers/<resource>.ts` — use `factory.createApp()` from `../factory`, import schemas and error map, implement handlers.
 4. Export the router instance as a named export.
 5. Mount in `src/index.tsx`: `app.route('/v1/<resource>', <router>)`.
 

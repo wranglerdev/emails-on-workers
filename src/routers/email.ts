@@ -1,8 +1,8 @@
-import { Hono } from 'hono'
 import { emailErrorMap } from '../errors/email'
 import { sendBodySchema } from '../schemas/email'
+import { factory } from '../factory'
 
-const email = new Hono<{ Bindings: CloudflareBindings }>()
+const email = factory.createApp()
 
 email.post('/send', async (c) => {
   const raw = await c.req.json()

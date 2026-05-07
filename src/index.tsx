@@ -1,9 +1,13 @@
-import { Hono } from 'hono'
+import { logger } from 'hono/logger'
+import { timeout } from 'hono/timeout'
 import { renderer } from './renderer'
 import { email } from './routers/email'
+import { factory } from './factory'
 
-const app = new Hono<{ Bindings: CloudflareBindings }>()
+const app = factory.createApp()
 
+app.use(logger())
+app.use(timeout(30000))
 app.use(renderer)
 
 app.get('/', (c) => {
