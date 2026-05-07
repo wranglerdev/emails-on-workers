@@ -2,7 +2,7 @@ import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 
 export const emailLogs = sqliteTable('email_logs', {
   id: text('id').primaryKey(),
-  status: text('status', { enum: ['pending', 'sent', 'failed'] }).notNull().default('pending'),
+  status: text('status', { enum: ['pending', 'queued', 'sent', 'failed'] }).notNull().default('pending'),
   toAddresses: text('to_addresses').notNull(),
   fromAddress: text('from_address').notNull(),
   subject: text('subject').notNull(),

@@ -35,6 +35,13 @@ After deploying, run database migrations:
 pnpm db:migrate:remote
 ```
 
+Create the email queues (required for async sending):
+
+```bash
+wrangler queues create email-send-queue
+wrangler queues create email-send-dlq
+```
+
 Then update the `BETTER_AUTH_URL` variable in your Worker's settings (or in `wrangler.jsonc`) to your actual Worker URL, for example `https://cloudflare-emails.your-subdomain.workers.dev`.
 
 Regenerate types after changing `wrangler.jsonc`:
@@ -45,21 +52,31 @@ pnpm cf-typegen
 
 ## API
 
-### `POST /v1/email`
+### `POST /v1/email/send`
 
-Send a transactional email.
+Enqueue a transactional email for async delivery. Returns `202` immediately.
 
 ```ts
-const res = await fetch('https://your-worker.workers.dev/v1/email', {
+const res = await fetch('https://your-worker.workers.dev/v1/email/send', {
   method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
+  headers: { 'Content-Type': 'application/json', 'x-api-key': 'your-api-key' },
   body: JSON.stringify({
     to: 'recipient@example.com',
+    from: 'sender@yourdomain.com',
     subject: 'Hello',
     html: '<p>Hello from Cloudflare Emails!</p>',
+    // optional: delay delivery up to 12 hours
+    delaySeconds: 3600,
   }),
 })
+// { id: "uuid", status: "queued" }
 ```
+
+Poll status with `GET /v1/logs/:id`.
+
+### `GET /v1/logs/:id`
+
+Fetch the status and details of a single email by its ID.
 
 ## Roadmap
 
@@ -76,9 +93,9 @@ const res = await fetch('https://your-worker.workers.dev/v1/email', {
 - [ok] Database + ORM
 - [ok] Auth
 - [ok] Setup frontend (daisyUI, TanStack Router, TanStack Query, TanStack Forms)
-- [ ] Dashboard
+- [ok] Dashboard
 - [ok] Deploy via one-click button on Cloudflare
-- [ ] Queues
+- [ok] Queues (async send, delayed delivery, retry with backoff, DLQ)
 - [ ] Custom emails using JSX renderer ([jsx.email](https://jsx.email/docs/quick-start))
 - [ ] Simple docs/how to page
 
@@ -86,6 +103,7 @@ const res = await fetch('https://your-worker.workers.dev/v1/email', {
 
 - [ ] Optimizations on top of the email service
 - [ ] UI polishing
+- [ ] better auth admin + new user invite
 Needs refine:
 
 - [ ] Campaigns: Send newsletters and product updates to large audiences

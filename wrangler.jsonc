@@ -21,6 +21,29 @@
     // Set this to your deployed Worker URL after first deployment, e.g. https://cloudflare-emails.your-subdomain.workers.dev
     "BETTER_AUTH_URL": "https://cloudflare-emails.workers.dev"
   },
+  "queues": {
+    "producers": [
+      {
+        "queue": "email-send-queue",
+        "binding": "EMAIL_QUEUE"
+      }
+    ],
+    "consumers": [
+      {
+        "queue": "email-send-queue",
+        "max_batch_size": 10,
+        "max_batch_timeout": 5,
+        "max_retries": 5,
+        "dead_letter_queue": "email-send-dlq"
+      },
+      {
+        "queue": "email-send-dlq",
+        "max_batch_size": 10,
+        "max_batch_timeout": 30,
+        "max_retries": 1
+      }
+    ]
+  },
   "assets": {
     // directory is set automatically by @cloudflare/vite-plugin during build
     // run_worker_first only for API routes — everything else goes directly to the client environment

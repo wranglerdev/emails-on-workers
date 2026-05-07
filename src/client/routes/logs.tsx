@@ -12,19 +12,21 @@ const STATUS_FILTERS = [
   { value: undefined, label: 'All' },
   { value: 'sent' as const, label: 'Sent' },
   { value: 'failed' as const, label: 'Failed' },
+  { value: 'queued' as const, label: 'Queued' },
   { value: 'pending' as const, label: 'Pending' },
 ]
 
 const STATUS_COLOR: Record<EmailStatus, string> = {
   sent: 'bg-success',
   failed: 'bg-error',
+  queued: 'bg-warning',
   pending: 'bg-base-content/25',
 }
 
 export const Route = createFileRoute('/logs')({
   validateSearch: (search: Record<string, unknown>) => ({
     page: Math.max(1, Number(search.page) || 1),
-    status: (['sent', 'failed', 'pending'].includes(search.status as string)
+    status: (['sent', 'failed', 'queued', 'pending'].includes(search.status as string)
       ? (search.status as EmailStatus)
       : undefined),
   }),

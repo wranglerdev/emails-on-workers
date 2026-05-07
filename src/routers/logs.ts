@@ -58,11 +58,29 @@ logs.get('/stats', async (c) => {
         sent: sql<number>`SUM(CASE WHEN ${emailLogs.status} = 'sent' THEN 1 ELSE 0 END)`,
         failed: sql<number>`SUM(CASE WHEN ${emailLogs.status} = 'failed' THEN 1 ELSE 0 END)`,
         pending: sql<number>`SUM(CASE WHEN ${emailLogs.status} = 'pending' THEN 1 ELSE 0 END)`,
+        queued: sql<number>`SUM(CASE WHEN ${emailLogs.status} = 'queued' THEN 1 ELSE 0 END)`,
       })
       .from(emailLogs),
   ])
 
   return c.json({ totals: totals[0], daily })
+})
+
+logs.get('/:id', async (c) => {
+  const { id } = c.req.param()
+  const db = createDb(c.env.DB)
+
+  const [row] = await db
+    .select()
+    .from(emailLogs)
+    .where(eq(emailLogs.id, id))
+    .limit(1)
+
+  if (!row) {
+    return c.json({ error: 'Not Found' }, 404)
+  }
+
+  return c.json(row)
 })
 
 export { logs }

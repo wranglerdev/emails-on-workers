@@ -75,25 +75,31 @@ const attachmentSchema = z.discriminatedUnion('disposition', [
   regularAttachmentSchema,
 ])
 
-const sendBodySchema = z
-  .object({
-    to: recipientSchema,
-    from: addressSchema,
-    subject: z.string().min(1, 'Subject cannot be empty').max(998, 'Subject exceeds RFC 5322 limit of 998 characters'),
-    html: z.string().optional(),
-    text: z.string().optional(),
-    cc: recipientSchema.optional(),
-    bcc: recipientSchema.optional(),
-    replyTo: addressSchema.optional(),
-    attachments: z
-      .array(attachmentSchema)
-      .max(MAX_ATTACHMENTS, `Maximum of ${MAX_ATTACHMENTS} attachments allowed per email`)
-      .optional(),
-    headers: z.record(z.string(), z.string()).optional(),
-  })
-  .refine((data) => data.html !== undefined || data.text !== undefined, {
-    message: 'At least one of "html" or "text" must be provided',
-    path: ['html'],
-  })
+const sendBodyBaseSchema = z.object({
+  to: recipientSchema,
+  from: addressSchema,
+  subject: z.string().min(1, 'Subject cannot be empty').max(998, 'Subject exceeds RFC 5322 limit of 998 characters'),
+  html: z.string().optional(),
+  text: z.string().optional(),
+  cc: recipientSchema.optional(),
+  bcc: recipientSchema.optional(),
+  replyTo: addressSchema.optional(),
+  attachments: z
+    .array(attachmentSchema)
+    .max(MAX_ATTACHMENTS, `Maximum of ${MAX_ATTACHMENTS} attachments allowed per email`)
+    .optional(),
+  headers: z.record(z.string(), z.string()).optional(),
+})
 
-export { sendBodySchema }
+const htmlOrTextRequired = {
+  check: (d: { html?: string; text?: string }) => d.html !== undefined || d.text !== undefined,
+  opts: { message: 'At least one of "html" or "text" must be provided', path: ['html'] as const },
+}
+
+const sendBodySchema = sendBodyBaseSchema.refine(htmlOrTextRequired.check, htmlOrTextRequired.opts)
+
+const sendRequestSchema = sendBodyBaseSchema
+  .extend({ delaySeconds: z.number().int().min(0).max(43200).optional() })
+  .refine(htmlOrTextRequired.check, htmlOrTextRequired.opts)
+
+export { sendBodySchema, sendRequestSchema }

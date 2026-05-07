@@ -1,6 +1,6 @@
 import { queryOptions } from '@tanstack/react-query'
 
-export type EmailStatus = 'pending' | 'sent' | 'failed'
+export type EmailStatus = 'pending' | 'queued' | 'sent' | 'failed'
 
 export interface EmailLog {
   id: string
@@ -28,6 +28,7 @@ export interface LogsStats {
     sent: number
     failed: number
     pending: number
+    queued: number
   }
   daily: DailyStats[]
 }
