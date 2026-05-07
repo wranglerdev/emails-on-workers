@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
 import { useQueryClient } from '@tanstack/react-query'
 import { authClient } from '../lib/auth-client'
+import { ThemeToggle } from './theme-toggle'
 
 interface Props {
   name: string
@@ -28,7 +29,8 @@ export function AppHeader({ name, email }: Props) {
         <span className="text-lg font-bold px-4">Cloudflare Emails</span>
       </div>
 
-      <div className="navbar-end pr-2">
+      <div className="navbar-end gap-1 pr-2">
+        <ThemeToggle />
         <div className="dropdown dropdown-end">
           <button
             tabIndex={0}
