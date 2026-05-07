@@ -57,8 +57,12 @@ const res = await fetch('https://your-worker.workers.dev/v1/email', {
 
 - [ok] Full Zod type safety
 - [ok] Error handling
-- [ ] Product images
-- [ ] Attachments
+- [ok] Product images
+- [ok] Attachments
+- [ok] Hono goodies
+      - Factory
+      - Logger
+      - Timeout
 - [ ] Database + ORM
 - [ ] Auth
 - [ ] Dashboard
@@ -69,6 +73,7 @@ const res = await fetch('https://your-worker.workers.dev/v1/email', {
 
 ### V2
 
+- [ ] Optimizations
 - [ ] Email routing
 
 ## Contributing
