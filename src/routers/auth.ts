@@ -25,7 +25,8 @@ auth.post('/sign-up/email', async (c, next) => {
 })
 
 auth.all('/*', async (c) => {
-  const authInstance = createAuth(c.env)
+  const baseURL = new URL(c.req.url).origin
+  const authInstance = createAuth(c.env, baseURL)
   return authInstance.handler(c.req.raw)
 })
 

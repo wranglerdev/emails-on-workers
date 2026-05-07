@@ -4,8 +4,9 @@ import { apiKey } from '@better-auth/api-key'
 import { drizzle } from 'drizzle-orm/d1'
 import * as schema from '../db/schema'
 
-export function createAuth(env: CloudflareBindings) {
+export function createAuth(env: CloudflareBindings, baseURL: string) {
   return betterAuth({
+    baseURL,
     database: drizzleAdapter(drizzle(env.DB, { schema }), {
       provider: 'sqlite',
     }),

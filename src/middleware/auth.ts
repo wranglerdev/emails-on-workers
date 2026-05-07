@@ -2,7 +2,8 @@ import { factory } from '../factory'
 import { createAuth } from '../lib/auth'
 
 export const requireAuth = factory.createMiddleware(async (c, next) => {
-  const auth = createAuth(c.env)
+  const baseURL = new URL(c.req.url).origin
+  const auth = createAuth(c.env, baseURL)
 
   // Better Auth's apiKey plugin reads x-api-key when enableSessionForAPIKeys is true.
   // Mirror Authorization: Bearer to x-api-key so both header conventions work.
