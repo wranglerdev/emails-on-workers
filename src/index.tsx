@@ -2,6 +2,7 @@ import { logger } from 'hono/logger'
 import { timeout } from 'hono/timeout'
 import { renderer } from './renderer'
 import { email } from './routers/email'
+import { logs } from './routers/logs'
 import { factory } from './factory'
 
 const app = factory.createApp()
@@ -15,5 +16,6 @@ app.get('/', (c) => {
 })
 
 app.route('/v1/email', email)
+app.route('/v1/logs', logs)
 
 export default app
