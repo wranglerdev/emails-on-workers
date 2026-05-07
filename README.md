@@ -2,6 +2,8 @@
 
 An open source transactional email API built on Cloudflare Workers. Send emails programmatically via a simple REST API — no third-party email provider needed, just your own Cloudflare account.
 
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/wranglerdev/emails-on-workers)
+
 ## Prerequisites
 
 1. **Cloudflare Workers Paid Plan** — the Email Sending binding requires a paid Workers plan.
@@ -26,6 +28,14 @@ Deploy to Cloudflare:
 ```bash
 pnpm deploy
 ```
+
+After deploying, run database migrations:
+
+```bash
+pnpm db:migrate:remote
+```
+
+Then update the `BETTER_AUTH_URL` variable in your Worker's settings (or in `wrangler.jsonc`) to your actual Worker URL, for example `https://cloudflare-emails.your-subdomain.workers.dev`.
 
 Regenerate types after changing `wrangler.jsonc`:
 
@@ -64,9 +74,9 @@ const res = await fetch('https://your-worker.workers.dev/v1/email', {
       - Logger
       - Timeout
 - [ok] Database + ORM
-- [ ] Auth
+- [ok] Auth
 - [ ] Dashboard
-- [ ] Deploy via one-click button on Cloudflare
+- [ok] Deploy via one-click button on Cloudflare
 - [ ] Queues
 - [ ] Custom emails using JSX renderer ([jsx.email](https://jsx.email/docs/quick-start))
 - [ ] Simple docs using Astro

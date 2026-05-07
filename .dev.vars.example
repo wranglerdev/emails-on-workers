@@ -1,0 +1,1 @@
+BETTER_AUTH_SECRET= # Required: generate with `openssl rand -hex 32`
