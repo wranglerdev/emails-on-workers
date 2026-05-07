@@ -16,15 +16,23 @@ logs.get('/', async (c) => {
   const { status, limit, offset } = parsed.data
   const db = createDb(c.env.DB)
 
-  const rows = await db
-    .select()
-    .from(emailLogs)
-    .where(status ? eq(emailLogs.status, status) : undefined)
-    .orderBy(desc(emailLogs.createdAt))
-    .limit(limit)
-    .offset(offset)
+  const where = status ? eq(emailLogs.status, status) : undefined
 
-  return c.json({ data: rows, limit, offset })
+  const [rows, [{ total }]] = await Promise.all([
+    db
+      .select()
+      .from(emailLogs)
+      .where(where)
+      .orderBy(desc(emailLogs.createdAt))
+      .limit(limit)
+      .offset(offset),
+    db
+      .select({ total: sql<number>`COUNT(*)` })
+      .from(emailLogs)
+      .where(where),
+  ])
+
+  return c.json({ data: rows, total, limit, offset })
 })
 
 logs.get('/stats', async (c) => {

@@ -1,4 +1,4 @@
-import { createFileRoute, redirect } from '@tanstack/react-router'
+import { createFileRoute, redirect, Link } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query'
 import { AppHeader } from '../components/app-header'
 import {
@@ -230,9 +230,17 @@ function Dashboard() {
 
         {/* recent emails */}
         <section>
-          <p className="text-[11px] text-base-content/40 uppercase tracking-widest font-medium mb-5">
-            Recent
-          </p>
+          <div className="flex items-baseline justify-between mb-5">
+            <p className="text-[11px] text-base-content/40 uppercase tracking-widest font-medium">
+              Recent
+            </p>
+            <Link
+              to="/logs"
+              className="text-[11px] text-base-content/35 hover:text-base-content/60 transition-colors uppercase tracking-widest font-medium"
+            >
+              View all
+            </Link>
+          </div>
 
           {logs.length === 0 ? (
             <p className="text-sm text-base-content/30 py-6">
