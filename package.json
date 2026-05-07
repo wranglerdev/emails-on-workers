@@ -26,15 +26,27 @@
   },
   "dependencies": {
     "@better-auth/api-key": "^1.6.9",
+    "@tanstack/react-form": "^1.29.1",
+    "@tanstack/react-query": "^5.100.9",
+    "@tanstack/react-router": "^1.169.2",
     "better-auth": "^1.6.9",
     "drizzle-orm": "^0.45.2",
     "hono": "^4.12.18",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
     "zod": "^4.4.3"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.2.3",
     "@libsql/client": "^0.17.3",
+    "@tailwindcss/vite": "^4.2.4",
+    "@tanstack/router-plugin": "^1.167.35",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.7.0",
+    "daisyui": "^5.5.19",
     "drizzle-kit": "^0.31.10",
+    "tailwindcss": "^4.2.4",
     "vite": "^6.3.5",
     "vite-ssr-components": "^0.6.1",
     "wrangler": "^4.17.0"
