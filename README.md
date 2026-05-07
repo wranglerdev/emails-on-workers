@@ -75,6 +75,7 @@ const res = await fetch('https://your-worker.workers.dev/v1/email', {
       - Timeout
 - [ok] Database + ORM
 - [ok] Auth
+- [ok] Setup frontend (daisyUI, TanStack Router, TanStack Query, TanStack Forms)
 - [ ] Dashboard
 - [ok] Deploy via one-click button on Cloudflare
 - [ ] Queues
@@ -83,8 +84,16 @@ const res = await fetch('https://your-worker.workers.dev/v1/email', {
 
 ### V2
 
-- [ ] Optimizations
-- [ ] Email routing
+- [ ] Optimizations on top of the email service
+
+Needs refine:
+
+- [ ] Campaigns: Send newsletters and product updates to large audiences
+- [ ] Contact Management: Manage contacts with custom fields and full activity history
+- [ ] Segments: Organize contacts with dynamic filtering and target the right audience
+- [ ] Workflows: Create advanced automations with triggers, delays, and conditional logic
+- [ ] Analytics: Track opens, clicks, bounces, and engagement metrics in real-time
+- [ ] Inbound Emails: Receive and process incoming emails with custom routing rules
 
 ## Contributing
 
