@@ -80,38 +80,16 @@ Fetch the status and details of a single email by its ID.
 
 ## Roadmap
 
-### MVP
-
-- [ok] Full Zod type safety
-- [ok] Error handling
-- [ok] Product images
-- [ok] Attachments
-- [ok] Hono goodies
-      - Factory
-      - Logger
-      - Timeout
-- [ok] Database + ORM
-- [ok] Auth
-- [ok] Setup frontend (daisyUI, TanStack Router, TanStack Query, TanStack Forms)
-- [ok] Dashboard
-- [ok] Deploy via one-click button on Cloudflare
-- [ok] Queues (async send, delayed delivery, retry with backoff, DLQ)
-- [ ] Custom emails using JSX renderer ([jsx.email](https://jsx.email/docs/quick-start))
-- [ ] Simple docs/how to page
-
-### V2
-
 - [ ] Optimizations on top of the email service
 - [ ] UI polishing
-- [ ] better auth admin + new user invite
-Needs refine:
-
-- [ ] Campaigns: Send newsletters and product updates to large audiences
-- [ ] Contact Management: Manage contacts with custom fields and full activity history
-- [ ] Segments: Organize contacts with dynamic filtering and target the right audience
-- [ ] Workflows: Create advanced automations with triggers, delays, and conditional logic
-- [ ] Analytics: Track opens, clicks, bounces, and engagement metrics in real-time
-- [ ] Inbound Emails: Receive and process incoming emails with custom routing rules
+- [ ] Better Auth admin + new user invite
+- [ ] Custom emails using JSX renderer ([jsx.email](https://jsx.email/docs/quick-start))
+- [ ] Campaigns: send newsletters and product updates to large audiences
+- [ ] Contact management: manage contacts with custom fields and full activity history
+- [ ] Segments: organize contacts with dynamic filtering
+- [ ] Workflows: automations with triggers, delays, and conditional logic
+- [ ] Analytics: track opens, clicks, bounces, and engagement metrics in real-time
+- [ ] Inbound emails: receive and process incoming emails with custom routing rules
 
 ## Contributing
 
