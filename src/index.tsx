@@ -14,7 +14,7 @@ app.use(timeout(30000))
 app.use(renderer)
 
 app.get('/', (c) => {
-  return c.render(<h1>Hello!</h1>)
+  return c.render(<></>)
 })
 
 app.route('/api/auth', auth)
