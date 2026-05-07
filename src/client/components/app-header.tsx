@@ -67,6 +67,9 @@ export function AppHeader({ name, email }: Props) {
             <li>
               <NavLink to="/logs" onClick={closeDropdown}>Logs</NavLink>
             </li>
+            <li>
+              <NavLink to="/docs" onClick={closeDropdown}>Docs</NavLink>
+            </li>
           </ul>
         </div>
 
@@ -77,6 +80,7 @@ export function AppHeader({ name, email }: Props) {
       <div className="navbar-center hidden lg:flex gap-0.5">
         <NavLink to="/">Dashboard</NavLink>
         <NavLink to="/logs">Logs</NavLink>
+        <NavLink to="/docs">Docs</NavLink>
       </div>
 
       <div className="navbar-end gap-1 pr-2">
