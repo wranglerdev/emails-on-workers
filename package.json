@@ -11,9 +11,12 @@
     "db:migrate:local": "wrangler d1 migrations apply DB --local",
     "db:migrate:remote": "wrangler d1 migrations apply DB --remote",
     "db:studio": "drizzle-kit studio",
-    "db:studio:local": "drizzle-kit studio --config drizzle.local.config.ts"
+    "db:studio:local": "drizzle-kit studio --config drizzle.local.config.ts",
+    "auth:schema": "better-auth generate --config src/lib/auth.cli.ts --output src/db/auth-schema.ts"
   },
   "dependencies": {
+    "@better-auth/api-key": "^1.6.9",
+    "better-auth": "^1.6.9",
     "drizzle-orm": "^0.45.2",
     "hono": "^4.12.18",
     "zod": "^4.4.3"

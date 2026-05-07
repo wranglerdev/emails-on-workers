@@ -15,3 +15,5 @@ export const emailLogs = sqliteTable('email_logs', {
 
 export type EmailLog = typeof emailLogs.$inferSelect
 export type NewEmailLog = typeof emailLogs.$inferInsert
+
+export * from './auth-schema'

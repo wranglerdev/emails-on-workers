@@ -8,6 +8,13 @@
       "when": 1778113980985,
       "tag": "0000_big_hellfire_club",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1778117066041,
+      "tag": "0001_brief_revanche",
+      "breakpoints": true
     }
   ]
 }
