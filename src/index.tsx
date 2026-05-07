@@ -17,6 +17,6 @@ app.use('/v1/*', requireAuth)
 app.route('/v1/email', email)
 app.route('/v1/logs', logs)
 
-app.notFound((c) => c.env.ASSETS.fetch(c.req.raw))
+app.notFound((c) => c.json({ error: 'Not Found' }, 404))
 
 export default app
