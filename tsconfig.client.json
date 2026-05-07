@@ -1,9 +1,0 @@
-{
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "jsxImportSource": "react",
-    "lib": ["ESNext", "DOM", "DOM.Iterable"]
-  },
-  "include": ["src/client/**/*"],
-  "exclude": []
-}
