@@ -10,7 +10,6 @@ declare namespace Cloudflare {
 		EMAIL: SendEmail;
 		EMAIL_QUEUE: Queue;
 		BETTER_AUTH_SECRET: string;
-		BETTER_AUTH_URL: string;
 	}
 }
 interface CloudflareBindings extends Cloudflare.Env {}
@@ -18,7 +17,7 @@ type StringifyValues<EnvType extends Record<string, unknown>> = {
 	[Binding in keyof EnvType]: EnvType[Binding] extends string ? EnvType[Binding] : string;
 };
 declare namespace NodeJS {
-	interface ProcessEnv extends StringifyValues<Pick<Cloudflare.Env, "BETTER_AUTH_SECRET" | "BETTER_AUTH_URL">> {}
+	interface ProcessEnv extends StringifyValues<Pick<Cloudflare.Env, "BETTER_AUTH_SECRET">> {}
 }
 
 // Begin runtime types

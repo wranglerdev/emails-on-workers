@@ -19,10 +19,7 @@
       "migrations_dir": "./migrations"
     }
   ],
-  "vars": {
-    // Set this to your deployed Worker URL after first deployment, e.g. https://cloudflare-emails.your-subdomain.workers.dev
-    "BETTER_AUTH_URL": "https://cloudflare-emails.gildemarcbjr.workers.dev"
-  },
+  "vars": {},
   "queues": {
     "producers": [
       {

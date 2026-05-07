@@ -20,9 +20,6 @@
     "bindings": {
       "BETTER_AUTH_SECRET": {
         "description": "Auth signing secret. Generate with: openssl rand -hex 32"
-      },
-      "BETTER_AUTH_URL": {
-        "description": "Base URL of your deployed Worker, e.g. https://cloudflare-emails.your-subdomain.workers.dev"
       }
     }
   },

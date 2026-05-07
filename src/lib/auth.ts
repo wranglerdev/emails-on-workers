@@ -10,7 +10,6 @@ export function createAuth(env: CloudflareBindings) {
       provider: 'sqlite',
     }),
     secret: env.BETTER_AUTH_SECRET,
-    baseURL: env.BETTER_AUTH_URL,
     basePath: '/api/auth',
     emailAndPassword: { enabled: true },
     plugins: [apiKey({ enableSessionForAPIKeys: true })],

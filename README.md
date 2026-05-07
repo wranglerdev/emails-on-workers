@@ -42,14 +42,6 @@ wrangler queues create email-send-queue
 wrangler queues create email-send-dlq
 ```
 
-Then update the `BETTER_AUTH_URL` variable in your Worker's settings (or in `wrangler.jsonc`) to your actual Worker URL, for example `https://cloudflare-emails.your-subdomain.workers.dev`.
-
-Regenerate types after changing `wrangler.jsonc`:
-
-```bash
-pnpm cf-typegen
-```
-
 ## API
 
 ### `POST /v1/email/send`
