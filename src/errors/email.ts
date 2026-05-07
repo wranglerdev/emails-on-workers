@@ -18,6 +18,10 @@ const emailErrorMap: Record<string, { status: number; message: string }> = {
   E_HEADER_VALUE_TOO_LONG:       { status: 400, message: 'A header value exceeds the 2,048 byte limit' },
   E_HEADER_NAME_INVALID:         { status: 400, message: 'A header name contains invalid characters or exceeds 100 bytes' },
   E_HEADERS_TOO_MANY:            { status: 400, message: 'Too many custom headers — maximum 20 non-X-prefixed headers allowed' },
+  E_ATTACHMENT_TOO_LARGE:        { status: 413, message: 'One or more attachments exceed the allowed size limit' },
+  E_TOO_MANY_ATTACHMENTS:        { status: 400, message: 'Too many attachments — maximum 20 attachments allowed per email' },
+  E_ATTACHMENT_INVALID_CONTENT:  { status: 400, message: 'Attachment content is not valid base64-encoded data' },
+  E_ATTACHMENT_TYPE_NOT_ALLOWED: { status: 400, message: 'Attachment MIME type is not permitted' },
 }
 
 export { emailErrorMap }
