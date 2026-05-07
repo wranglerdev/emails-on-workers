@@ -63,7 +63,7 @@ const res = await fetch('https://your-worker.workers.dev/v1/email', {
       - Factory
       - Logger
       - Timeout
-- [ ] Database + ORM
+- [ok] Database + ORM
 - [ ] Auth
 - [ ] Dashboard
 - [ ] Deploy via one-click button on Cloudflare
