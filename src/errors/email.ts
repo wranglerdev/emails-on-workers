@@ -1,4 +1,7 @@
-const emailErrorMap: Record<string, { status: number; message: string }> = {
+type EmailErrorStatus = 400 | 403 | 413 | 422 | 429 | 500 | 502
+type EmailBindingError = { code?: string; message?: string }
+
+const emailErrorMap: Record<string, { status: EmailErrorStatus; message: string }> = {
   E_VALIDATION_ERROR:            { status: 400, message: 'Invalid payload — check email format and required fields' },
   E_FIELD_MISSING:               { status: 400, message: 'A required field is missing (to, from, or subject)' },
   E_TOO_MANY_RECIPIENTS:         { status: 400, message: 'Combined recipients across to, cc, and bcc cannot exceed 50' },
@@ -25,3 +28,4 @@ const emailErrorMap: Record<string, { status: number; message: string }> = {
 }
 
 export { emailErrorMap }
+export type { EmailBindingError }
