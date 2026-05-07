@@ -9,8 +9,8 @@
         try {
           var t = localStorage.getItem('theme') || 'system';
           var d = t === 'system'
-            ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'lofi')
-            : (t === 'dark' ? 'dark' : 'lofi');
+            ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'black' : 'lofi')
+            : (t === 'dark' ? 'black' : 'lofi');
           document.documentElement.setAttribute('data-theme', d);
         } catch (e) {}
       })();

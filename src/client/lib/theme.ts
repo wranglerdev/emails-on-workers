@@ -7,7 +7,7 @@ const KEY = 'theme'
 // Maps semantic preference to the daisyUI theme name
 const DAISY_THEME: Record<'light' | 'dark', string> = {
   light: 'lofi',
-  dark: 'dark',
+  dark: 'black',
 }
 
 function getStored(): Theme {
